@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://3tfep6asnbkh"]
+[gd_scene load_steps=11 format=3 uid="uid://3tfep6asnbkh"]
 
 [ext_resource type="Script" path="res://player_movement.gd" id="1_nlax7"]
 [ext_resource type="Texture2D" uid="uid://rxludvpfr82o" path="res://textures/Trucker/Torse_Idle.png" id="1_r51fi"]
 [ext_resource type="Texture2D" uid="uid://60cfmt6m02e2" path="res://textures/Trucker/Legs_Idle.png" id="2_sh5wk"]
 [ext_resource type="Texture2D" uid="uid://dmw2f1evfepn3" path="res://textures/Trucker/Legs_Walk.png" id="4_jbnml"]
+[ext_resource type="PackedScene" uid="uid://5uvq4v5dc5na" path="res://Camera/camera_2d.tscn" id="5_d83pp"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1s7dw"]
 friction = 0.4
@@ -28,7 +29,10 @@ radius = 8.875
 height = 48.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k0ynu"]
-radius = 6.0208
+radius = 7.125
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ufcvu"]
+radius = 70.9384
 
 [node name="Player" type="Node2D"]
 scale = Vector2(4, 4)
@@ -52,13 +56,21 @@ position = Vector2(-2.25, 16)
 scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_2dorv")
 
-[node name="Area2D" type="Area2D" parent="RigidBody2D"]
+[node name="GroundedArea" type="Area2D" parent="RigidBody2D"]
 position = Vector2(-2.5, 0)
 scale = Vector2(4, 4)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/GroundedArea"]
 position = Vector2(0.25, 12.125)
 shape = SubResource("CircleShape2D_k0ynu")
 
-[connection signal="body_entered" from="RigidBody2D/Area2D" to="RigidBody2D" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="RigidBody2D/Area2D" to="RigidBody2D" method="_on_area_2d_body_exited"]
+[node name="Camera2D" parent="RigidBody2D" instance=ExtResource("5_d83pp")]
+
+[node name="PickupArea" type="Area2D" parent="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/PickupArea"]
+shape = SubResource("CircleShape2D_ufcvu")
+
+[connection signal="body_entered" from="RigidBody2D/GroundedArea" to="RigidBody2D" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="RigidBody2D/GroundedArea" to="RigidBody2D" method="_on_area_2d_body_exited"]
+[connection signal="body_exited" from="RigidBody2D/PickupArea" to="RigidBody2D" method="_on_pickup_area_body_exited"]
