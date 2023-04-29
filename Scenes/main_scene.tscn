@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c4cq4liv6pfqp"]
 
 [ext_resource type="PackedScene" uid="uid://dajyi43ab353q" path="res://Scenes/ground.tscn" id="1_fnv74"]
-[ext_resource type="PackedScene" uid="uid://c3idryao8of5x" path="res://Scenes/truck.tscn" id="2_lnld7"]
+[ext_resource type="PackedScene" uid="uid://bc3owkdgcenqd" path="res://Scenes/truck.tscn" id="2_lnld7"]
 [ext_resource type="PackedScene" uid="uid://3tfep6asnbkh" path="res://player.tscn" id="3_11swo"]
 [ext_resource type="PackedScene" uid="uid://ckxm2vpyhjud6" path="res://box.tscn" id="4_8wvps"]
 

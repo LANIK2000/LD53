@@ -96,7 +96,7 @@ func _input(event):
 	if Input.is_key_pressed(KEY_UP) and just_pressed and grounded and linear_velocity.y > -100:
 		apply_central_impulse(Vector2.UP * jump_amount)
 	
-	if Input.is_key_pressed(KEY_DOWN) and just_pressed and not gun and nearest_box != null:
+	if Input.is_key_pressed(KEY_E) and just_pressed and not gun and nearest_box != null:
 		holding_box = !holding_box;
 
 # Check how many RigidBody or StaticBody objects the ray is intersecting (to check if grounded)

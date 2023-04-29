@@ -1,4 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c3idryao8of5x"]
+[gd_scene load_steps=12 format=3 uid="uid://bc3owkdgcenqd"]
+
+[ext_resource type="Texture2D" uid="uid://bwngy3jewmowg" path="res://textures/Truck/Frame.png" id="1_6p0ik"]
+[ext_resource type="Texture2D" uid="uid://b1p8k1ggxomow" path="res://textures/Truck/Wheel.png" id="2_dvcf2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mpfx5"]
 size = Vector2(64, 16)
@@ -32,6 +35,11 @@ radius = 56.0
 [node name="TruckBody" type="RigidBody2D" parent="."]
 position = Vector2(-160, 0)
 mass = 10.0
+
+[node name="Frame" type="Sprite2D" parent="TruckBody"]
+position = Vector2(167, -134)
+scale = Vector2(4, 4)
+texture = ExtResource("1_6p0ik")
 
 [node name="FloorBackCollision" type="CollisionShape2D" parent="TruckBody"]
 position = Vector2(-160, -32)
@@ -72,6 +80,12 @@ shape = SubResource("RectangleShape2D_ebvxs")
 position = Vector2(-224, 48)
 rotation = -0.939523
 
+[node name="Wheel" type="Sprite2D" parent="Wheel1"]
+position = Vector2(-1.52588e-05, -1.52588e-05)
+rotation = 0.939523
+scale = Vector2(4, 4)
+texture = ExtResource("2_dvcf2")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wheel1"]
 shape = SubResource("CircleShape2D_5kn2l")
 
@@ -85,6 +99,12 @@ softness = 1.0
 position = Vector2(-80, 48)
 rotation = -1.87905
 
+[node name="Wheel2" type="Sprite2D" parent="Wheel2"]
+position = Vector2(-1.25626, 0.649445)
+rotation = 1.87905
+scale = Vector2(4, 4)
+texture = ExtResource("2_dvcf2")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wheel2"]
 shape = SubResource("CircleShape2D_5kn2l")
 
@@ -97,6 +117,12 @@ softness = 1.0
 [node name="Wheel3" type="RigidBody2D" parent="."]
 position = Vector2(232, 48)
 rotation = -0.939523
+
+[node name="Wheel3" type="Sprite2D" parent="Wheel3"]
+position = Vector2(-1.52588e-05, -1.52588e-05)
+rotation = 0.939523
+scale = Vector2(4, 4)
+texture = ExtResource("2_dvcf2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wheel3"]
 shape = SubResource("CircleShape2D_5kn2l")
