@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://chuavr25hosst"]
+
+[ext_resource type="PackedScene" uid="uid://uorut87uks00" path="res://MonsterWall/MonsterWall.tscn" id="1_c3aqm"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="MonsterWall" parent="." instance=ExtResource("1_c3aqm")]
