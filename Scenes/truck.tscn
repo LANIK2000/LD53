@@ -31,6 +31,7 @@ radius = 56.0
 
 [node name="TruckBody" type="RigidBody2D" parent="."]
 position = Vector2(-160, 0)
+mass = 10.0
 
 [node name="FloorBackCollision" type="CollisionShape2D" parent="TruckBody"]
 position = Vector2(-160, -32)
@@ -78,7 +79,7 @@ shape = SubResource("CircleShape2D_5kn2l")
 position = Vector2(-224, 48)
 node_a = NodePath("../TruckBody")
 node_b = NodePath("../Wheel1")
-softness = 4.0
+softness = 1.0
 
 [node name="Wheel2" type="RigidBody2D" parent="."]
 position = Vector2(-80, 48)
@@ -91,7 +92,7 @@ shape = SubResource("CircleShape2D_5kn2l")
 position = Vector2(-80, 48)
 node_a = NodePath("../TruckBody")
 node_b = NodePath("../Wheel2")
-softness = 4.0
+softness = 1.0
 
 [node name="Wheel3" type="RigidBody2D" parent="."]
 position = Vector2(232, 48)
@@ -104,4 +105,4 @@ shape = SubResource("CircleShape2D_5kn2l")
 position = Vector2(232, 48)
 node_a = NodePath("../TruckBody")
 node_b = NodePath("../Wheel3")
-softness = 4.0
+softness = 1.0

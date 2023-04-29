@@ -1,37 +1,47 @@
-[gd_scene load_steps=6 format=3 uid="uid://3tfep6asnbkh"]
+[gd_scene load_steps=7 format=3 uid="uid://3tfep6asnbkh"]
 
 [ext_resource type="Script" path="res://player_movement.gd" id="1_nlax7"]
 [ext_resource type="Texture2D" uid="uid://rxludvpfr82o" path="res://textures/Trucker/Torse_Idle.png" id="1_r51fi"]
 [ext_resource type="Texture2D" uid="uid://60cfmt6m02e2" path="res://textures/Trucker/Legs_Idle.png" id="2_sh5wk"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2dorv"]
-radius = 9.22509
-height = 44.7552
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1s7dw"]
+friction = 0.4
 
-[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_uauml"]
-length = 21.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2dorv"]
+radius = 8.875
+height = 48.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k0ynu"]
+radius = 6.0208
 
 [node name="Player" type="Node2D"]
 scale = Vector2(4, 4)
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_1s7dw")
+lock_rotation = true
 script = ExtResource("1_nlax7")
 
-[node name="Torso" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Torso" type="Sprite2D" parent="RigidBody2D"]
+scale = Vector2(4, 4)
 texture = ExtResource("1_r51fi")
 
-[node name="Legs" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Legs" type="Sprite2D" parent="RigidBody2D"]
+scale = Vector2(4, 4)
 texture = ExtResource("2_sh5wk")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0, 4)
-scale = Vector2(0.542, 0.542)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(-2.25, 16)
+scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_2dorv")
 
-[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+[node name="Area2D" type="Area2D" parent="RigidBody2D"]
+position = Vector2(-2.5, 0)
+scale = Vector2(4, 4)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
-shape = SubResource("SeparationRayShape2D_uauml")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D"]
+position = Vector2(0.25, 12.125)
+shape = SubResource("CircleShape2D_k0ynu")
 
-[connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_exited"]
+[connection signal="body_entered" from="RigidBody2D/Area2D" to="RigidBody2D" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="RigidBody2D/Area2D" to="RigidBody2D" method="_on_area_2d_body_exited"]
