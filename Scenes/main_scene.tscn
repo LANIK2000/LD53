@@ -1,8 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://be8hbold2th75"]
+[gd_scene load_steps=3 format=3 uid="uid://be8hbold2th75"]
 
 [ext_resource type="PackedScene" uid="uid://dajyi43ab353q" path="res://Scenes/ground.tscn" id="1_fnv74"]
+[ext_resource type="PackedScene" uid="uid://c3idryao8of5x" path="res://truck.tscn" id="2_lnld7"]
 
 [node name="Main Scene" type="Node2D"]
 
 [node name="Ground" parent="." instance=ExtResource("1_fnv74")]
-position = Vector2(320, 992)
+position = Vector2(320, 808)
+rotation = 0.120428
+
+[node name="Truck" parent="." instance=ExtResource("2_lnld7")]
+position = Vector2(200, 456)
+
+[node name="Ground2" parent="." instance=ExtResource("1_fnv74")]
+position = Vector2(960, 848)
+
+[node name="Ground3" parent="." instance=ExtResource("1_fnv74")]
+position = Vector2(1592, 768)
+rotation = -0.23911
