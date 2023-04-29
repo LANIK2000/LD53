@@ -1,11 +1,27 @@
-[gd_scene load_steps=7 format=3 uid="uid://3tfep6asnbkh"]
+[gd_scene load_steps=9 format=3 uid="uid://3tfep6asnbkh"]
 
 [ext_resource type="Script" path="res://player_movement.gd" id="1_nlax7"]
 [ext_resource type="Texture2D" uid="uid://rxludvpfr82o" path="res://textures/Trucker/Torse_Idle.png" id="1_r51fi"]
 [ext_resource type="Texture2D" uid="uid://60cfmt6m02e2" path="res://textures/Trucker/Legs_Idle.png" id="2_sh5wk"]
+[ext_resource type="Texture2D" uid="uid://dmw2f1evfepn3" path="res://textures/Trucker/Legs_Walk.png" id="4_jbnml"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1s7dw"]
 friction = 0.4
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pgrsu"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sh5wk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jbnml")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2dorv"]
 radius = 8.875
@@ -26,9 +42,10 @@ script = ExtResource("1_nlax7")
 scale = Vector2(4, 4)
 texture = ExtResource("1_r51fi")
 
-[node name="Legs" type="Sprite2D" parent="RigidBody2D"]
+[node name="Legs" type="AnimatedSprite2D" parent="RigidBody2D"]
 scale = Vector2(4, 4)
-texture = ExtResource("2_sh5wk")
+sprite_frames = SubResource("SpriteFrames_pgrsu")
+animation = &"walking"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 position = Vector2(-2.25, 16)
