@@ -13,7 +13,6 @@ config_version=5
 config/name="Ld 53"
 run/main_scene="res://Scenes/main_scene.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
-config/icon="res://icon.svg"
 
 [display]
 

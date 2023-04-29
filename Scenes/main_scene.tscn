@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://be8hbold2th75"]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="PackedScene" uid="uid://dajyi43ab353q" path="res://Scenes/ground.tscn" id="1_fnv74"]
-[ext_resource type="PackedScene" uid="uid://c3idryao8of5x" path="res://truck.tscn" id="2_lnld7"]
+[ext_resource type="PackedScene" uid="uid://c3idryao8of5x" path="res://Scenes/truck.tscn" id="2_lnld7"]
 
 [node name="Main Scene" type="Node2D"]
 
