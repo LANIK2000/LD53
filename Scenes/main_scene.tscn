@@ -27,3 +27,6 @@ scale = Vector2(1, 1)
 
 [node name="Box" parent="." instance=ExtResource("4_8wvps")]
 position = Vector2(256, 400)
+
+[node name="Box2" parent="." instance=ExtResource("4_8wvps")]
+position = Vector2(400, 88)
