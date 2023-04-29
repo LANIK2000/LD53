@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://3tfep6asnbkh"]
+
+[ext_resource type="Script" path="res://player_movement.gd" id="1_nlax7"]
+[ext_resource type="Texture2D" uid="uid://rxludvpfr82o" path="res://textures/Trucker/Torse_Idle.png" id="1_r51fi"]
+[ext_resource type="Texture2D" uid="uid://60cfmt6m02e2" path="res://textures/Trucker/Legs_Idle.png" id="2_sh5wk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2dorv"]
+radius = 9.22509
+height = 44.7552
+
+[sub_resource type="SeparationRayShape2D" id="SeparationRayShape2D_uauml"]
+length = 21.0
+
+[node name="Player" type="Node2D"]
+scale = Vector2(4, 4)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_nlax7")
+
+[node name="Torso" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("1_r51fi")
+
+[node name="Legs" type="Sprite2D" parent="CharacterBody2D"]
+texture = ExtResource("2_sh5wk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, 4)
+scale = Vector2(0.542, 0.542)
+shape = SubResource("CapsuleShape2D_2dorv")
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D"]
+shape = SubResource("SeparationRayShape2D_uauml")
+
+[connection signal="body_entered" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="CharacterBody2D/Area2D" to="CharacterBody2D" method="_on_area_2d_body_exited"]

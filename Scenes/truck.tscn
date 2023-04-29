@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://c3idryao8of5x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mpfx5"]
+size = Vector2(64, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_usdon"]
+size = Vector2(704, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ufp7j"]
+size = Vector2(208, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a1nnc"]
+size = Vector2(208, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5phqb"]
+size = Vector2(24, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pm44b"]
+size = Vector2(32, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h7ifc"]
+size = Vector2(160, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebvxs"]
+size = Vector2(608, 40)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5kn2l"]
+radius = 56.0
+
+[node name="Truck" type="Node2D"]
+
+[node name="TruckBody" type="RigidBody2D" parent="."]
+position = Vector2(-160, 0)
+
+[node name="FloorBackCollision" type="CollisionShape2D" parent="TruckBody"]
+position = Vector2(-160, -32)
+shape = SubResource("RectangleShape2D_mpfx5")
+
+[node name="FloorCollision" type="CollisionShape2D" parent="TruckBody"]
+position = Vector2(160, 0)
+shape = SubResource("RectangleShape2D_usdon")
+
+[node name="TopFloorCollision" type="CollisionShape2D" parent="TruckBody"]
+position = Vector2(-24, -176)
+shape = SubResource("RectangleShape2D_ufp7j")
+
+[node name="TopCeilingCollision" type="CollisionShape2D" parent="TruckBody"]
+position = Vector2(-24, -320)
+shape = SubResource("RectangleShape2D_a1nnc")
+
+[node name="TopBackCollision" type="CollisionShape2D" parent="TruckBody"]
+position = Vector2(-116, -220)
+shape = SubResource("RectangleShape2D_5phqb")
+
+[node name="CockpitBackCollision" type="CollisionShape2D" parent="TruckBody"]
+position = Vector2(272, -188)
+shape = SubResource("RectangleShape2D_pm44b")
+
+[node name="CockpitCeilingCollision" type="CollisionShape2D" parent="TruckBody"]
+position = Vector2(368, -200)
+shape = SubResource("RectangleShape2D_h7ifc")
+
+[node name="CockpitWindowCollisionD" type="CollisionPolygon2D" parent="TruckBody"]
+polygon = PackedVector2Array(416, -184, 448, -184, 512, -24, 448, -24, 448, -104)
+
+[node name="BottomCollision" type="CollisionShape2D" parent="TruckBody"]
+position = Vector2(160, 44)
+shape = SubResource("RectangleShape2D_ebvxs")
+
+[node name="Wheel1" type="RigidBody2D" parent="."]
+position = Vector2(-224, 48)
+rotation = -0.939523
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wheel1"]
+shape = SubResource("CircleShape2D_5kn2l")
+
+[node name="Joint1" type="PinJoint2D" parent="."]
+position = Vector2(-224, 48)
+node_a = NodePath("../TruckBody")
+node_b = NodePath("../Wheel1")
+softness = 4.0
+
+[node name="Wheel2" type="RigidBody2D" parent="."]
+position = Vector2(-80, 48)
+rotation = -1.87905
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wheel2"]
+shape = SubResource("CircleShape2D_5kn2l")
+
+[node name="Joint2" type="PinJoint2D" parent="."]
+position = Vector2(-80, 48)
+node_a = NodePath("../TruckBody")
+node_b = NodePath("../Wheel2")
+softness = 4.0
+
+[node name="Wheel3" type="RigidBody2D" parent="."]
+position = Vector2(232, 48)
+rotation = -0.939523
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wheel3"]
+shape = SubResource("CircleShape2D_5kn2l")
+
+[node name="Joint3" type="PinJoint2D" parent="."]
+position = Vector2(232, 48)
+node_a = NodePath("../TruckBody")
+node_b = NodePath("../Wheel3")
+softness = 4.0
