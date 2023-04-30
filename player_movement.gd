@@ -6,6 +6,7 @@ var speed = 15;
 var jump_amount = 750;
 var pull_force = 5;
 var recoil = 200;
+var shoot_force = 300;
 
 var grounded = false;
 var area_collision_count = 0;
@@ -63,6 +64,7 @@ func _physics_process(delta):
 	# Sprite direction change
 	get_node("Torso").scale.x = direction * abs(get_node("Torso").scale.x)
 	get_node("Legs").scale.x = direction * abs(get_node("Legs").scale.x)
+	get_node("RayCast2D").set_target_position(Vector2(direction * 1000,0));
 	
 	# Air resistence
 	apply_central_impulse(linear_velocity * -1 * air_resistence * delta * 100)
@@ -107,7 +109,6 @@ func _physics_process(delta):
 
 func _input(event):
 	# Jumping
-	print(event.as_text())
 	var just_pressed = event.is_pressed() and not event.is_echo()
 	if event.as_text() == "Up" and just_pressed and grounded and linear_velocity.y > -100:
 		apply_central_impulse(Vector2.UP * jump_amount)
@@ -118,6 +119,15 @@ func _input(event):
 			get_node("Torso").frame = 2;
 			get_node("Torso").play("shooting");
 			apply_central_impulse(Vector2.RIGHT * -direction * recoil);
+			
+			var target = get_node("RayCast2D").get_collider()
+			print(target)
+			if (target != null):
+				if (target.has_node("ThisIsABoxFuckYou") or target.get_name() == "TruckBody"):
+					target.apply_central_impulse(Vector2.RIGHT * direction * shoot_force)
+				get_parent().get_node("GunParticle").global_position = get_node("RayCast2D").get_collision_point()
+				get_parent().get_node("GunParticle").emitting = true;
+				
 			
 	
 	if event.as_text() == "E" and just_pressed:
