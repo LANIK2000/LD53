@@ -2,6 +2,8 @@ extends Sprite2D
 
 @export var textures: Array[Texture]
 
+var rand = RandomNumberGenerator.new();
+
 var crawled_distance = 1
 var crawled_speed = 200
 var crawled_distance_max = 55200
@@ -49,6 +51,9 @@ func _process(delta):
 	for body in $Wall.get_overlapping_bodies():
 		if body.name == "PlayerRigidBody2D":
 			get_tree().reload_current_scene()
+		elif body is RigidBody2D:
+			body.apply_central_impulse(Vector2(0.01,-1) * 1000 * body.mass * delta);
+			body.apply_torque_impulse(100000 * delta);
 	
 	if hit_timer > 0:
 		hit_timer -= delta
