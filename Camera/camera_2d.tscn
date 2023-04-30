@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://5uvq4v5dc5na"]
+[gd_scene load_steps=6 format=3 uid="uid://5uvq4v5dc5na"]
 
 [ext_resource type="Script" path="res://Camera/Camera2D.gd" id="1_edksd"]
 [ext_resource type="Texture2D" uid="uid://b1i43iimxftgo" path="res://textures/Background/Sky.png" id="2_lrm8l"]
 [ext_resource type="Texture2D" uid="uid://coboc8vyj73oo" path="res://textures/Background/Land.png" id="3_s32pi"]
+
+[sub_resource type="SystemFont" id="SystemFont_wncsw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_65sq4"]
+font = SubResource("SystemFont_wncsw")
+font_size = 48
+outline_size = 19
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Camera2D" type="Camera2D"]
 script = ExtResource("1_edksd")
@@ -18,3 +26,11 @@ z_index = -99
 position = Vector2(-54, 13)
 scale = Vector2(5.5101, 5.5101)
 texture = ExtResource("3_s32pi")
+
+[node name="Ammo" type="Label" parent="."]
+offset_left = -849.0
+offset_top = -460.0
+offset_right = -612.0
+offset_bottom = -371.0
+text = "AMMO: 20"
+label_settings = SubResource("LabelSettings_65sq4")

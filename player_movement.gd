@@ -9,6 +9,7 @@ var jump_amount = 750;
 var pull_force = 5;
 var recoil = 200;
 var shoot_force = 300;
+var ammo = 20;
 
 var grounded = false;
 var area_collision_count = 0;
@@ -113,8 +114,9 @@ func _input(event):
 		apply_central_impulse(Vector2.UP * jump_amount)
 	
 	if event.as_text() == "Space" and just_pressed:
-		if (gun):
+		if (gun and ammo > 0):
 			shooting = true;
+			ammo -= 1;
 			get_node("Torso").frame = 2;
 			get_node("Torso").play("shooting");
 			apply_central_impulse(Vector2.RIGHT * -direction * recoil);
