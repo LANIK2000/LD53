@@ -1,5 +1,7 @@
 extends RigidBody2D
 
+@export var gun_sound_effect: AudioStreamPlayer2D
+
 var gun = true;
 
 var speed = 15;
@@ -118,7 +120,7 @@ func _input(event):
 			get_node("Torso").frame = 2;
 			get_node("Torso").play("shooting");
 			apply_central_impulse(Vector2.RIGHT * -direction * recoil);
-			
+			gun_sound_effect.play()
 	
 	if event.as_text() == "E" and just_pressed:
 		if (gun):
