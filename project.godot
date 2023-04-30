@@ -19,6 +19,10 @@ config/features=PackedStringArray("4.0", "Forward Plus")
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/rmsmartshape/plugin.cfg")
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
