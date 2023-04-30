@@ -102,14 +102,11 @@ func _physics_process(delta):
 				min_distance = distance
 				nearest_box = body;
 				nearest_gun = null;
-			else:
-				nearest_gun = null;
-	
 	
 
 func _input(event):
 	# Jumping
-	print(event.as_text())
+#	print(event.as_text())
 	var just_pressed = event.is_pressed() and not event.is_echo()
 	if event.as_text() == "Up" and just_pressed and grounded and linear_velocity.y > -100:
 		apply_central_impulse(Vector2.UP * jump_amount)
