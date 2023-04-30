@@ -107,11 +107,12 @@ func _physics_process(delta):
 
 func _input(event):
 	# Jumping
+	print(event.as_text())
 	var just_pressed = event.is_pressed() and not event.is_echo()
-	if Input.is_key_pressed(KEY_UP) and just_pressed and grounded and linear_velocity.y > -100:
+	if event.as_text() == "Up" and just_pressed and grounded and linear_velocity.y > -100:
 		apply_central_impulse(Vector2.UP * jump_amount)
 	
-	if Input.is_key_pressed(KEY_SPACE) and just_pressed:
+	if event.as_text() == "Space" and just_pressed:
 		if (gun):
 			shooting = true;
 			get_node("Torso").frame = 2;
@@ -119,7 +120,7 @@ func _input(event):
 			apply_central_impulse(Vector2.RIGHT * -direction * recoil);
 			
 	
-	if Input.is_key_pressed(KEY_E) and just_pressed:
+	if event.as_text() == "E" and just_pressed:
 		if (gun):
 			gun = false;
 			var dropped_gun = GUN.instantiate();
