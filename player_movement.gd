@@ -163,9 +163,9 @@ func _on_pickup_area_body_exited(body):
 		body.gravity_scale = 1;
 		body.mass = previous_mass;
 		body.modulate = normal_color;
-		if (nearest_box == body):
-			nearest_box = null;
-			holding_box = false;
+#		if (nearest_box == body):
+#			nearest_box = null;
+#			holding_box = false;
 	if body.has_node("GUN!!!"):
 		if (nearest_gun == body):
 			nearest_gun = null;
