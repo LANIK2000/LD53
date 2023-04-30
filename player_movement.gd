@@ -147,6 +147,7 @@ func _input(event):
 		
 		elif (not gun and nearest_box != null):
 			holding_box = !holding_box;
+			nearest_box = null
 
 # Check how many RigidBody or StaticBody objects the ray is intersecting (to check if grounded)
 func _on_area_2d_body_entered(body):
