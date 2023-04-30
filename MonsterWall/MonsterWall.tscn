@@ -1,11 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://uorut87uks00"]
+[gd_scene load_steps=6 format=3 uid="uid://uorut87uks00"]
 
 [ext_resource type="Texture2D" uid="uid://bvnqhc8o3foq8" path="res://textures/Monster_Wall/Wiggle_1.png" id="1_w45bc"]
 [ext_resource type="Script" path="res://MonsterWall/MonsterWall.gd" id="2_vy538"]
 [ext_resource type="Texture2D" uid="uid://b67e0i2n20klb" path="res://textures/Monster_Wall/Wiggle_2.png" id="3_ovbd4"]
 [ext_resource type="Texture2D" uid="uid://cdpsmr76jnu4d" path="res://textures/Monster_Wall/Wiggle_3.png" id="4_1x746"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7owoe"]
+size = Vector2(34.8438, 5630)
+
 [node name="MonsterWall" type="Sprite2D"]
 texture = ExtResource("1_w45bc")
 script = ExtResource("2_vy538")
 textures = Array[Texture]([ExtResource("1_w45bc"), ExtResource("3_ovbd4"), ExtResource("4_1x746"), ExtResource("3_ovbd4")])
+
+[node name="Wall" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+shape = SubResource("RectangleShape2D_7owoe")

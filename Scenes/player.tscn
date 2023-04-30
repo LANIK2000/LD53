@@ -63,50 +63,51 @@ radius = 78.0256
 [node name="Player" type="Node2D"]
 scale = Vector2(4, 4)
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." node_paths=PackedStringArray("gun_sound_effect")]
+[node name="PlayerRigidBody2D" type="RigidBody2D" parent="." node_paths=PackedStringArray("gun_sound_effect")]
 physics_material_override = SubResource("PhysicsMaterial_1s7dw")
 lock_rotation = true
 script = ExtResource("1_nlax7")
 gun_sound_effect = NodePath("gun_sound_effect")
 
-[node name="gun_sound_effect" type="AudioStreamPlayer2D" parent="RigidBody2D"]
+[node name="gun_sound_effect" type="AudioStreamPlayer2D" parent="PlayerRigidBody2D"]
 stream = ExtResource("2_6fm25")
 
-[node name="Torso" type="AnimatedSprite2D" parent="RigidBody2D"]
+[node name="Torso" type="AnimatedSprite2D" parent="PlayerRigidBody2D"]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_3gqyj")
 animation = &"shooting"
 speed_scale = 5.0
 
-[node name="Legs" type="AnimatedSprite2D" parent="RigidBody2D"]
+[node name="Legs" type="AnimatedSprite2D" parent="PlayerRigidBody2D"]
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_pgrsu")
 animation = &"walking"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerRigidBody2D"]
 position = Vector2(-2.25, 16)
 scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_2dorv")
 
-[node name="GroundedArea" type="Area2D" parent="RigidBody2D"]
+[node name="GroundedArea" type="Area2D" parent="PlayerRigidBody2D"]
 position = Vector2(-2.5, 0)
 scale = Vector2(4, 4)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/GroundedArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerRigidBody2D/GroundedArea"]
 position = Vector2(0.25, 12.125)
 shape = SubResource("CircleShape2D_k0ynu")
 
-[node name="Camera2D" parent="RigidBody2D" instance=ExtResource("5_d83pp")]
+[node name="Camera2D" parent="PlayerRigidBody2D" instance=ExtResource("5_d83pp")]
 
-[node name="PickupArea" type="Area2D" parent="RigidBody2D"]
+[node name="PickupArea" type="Area2D" parent="PlayerRigidBody2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/PickupArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerRigidBody2D/PickupArea"]
 position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_ufcvu")
 
-[node name="RayCast2D" type="RayCast2D" parent="RigidBody2D"]
+[node name="RayCast2D" type="RayCast2D" parent="PlayerRigidBody2D"]
 position = Vector2(2, 14)
 target_position = Vector2(1000, 0)
+collide_with_areas = true
 
 [node name="GunParticle" type="CPUParticles2D" parent="."]
 emitting = false
@@ -129,7 +130,7 @@ scale_amount_min = 6.0
 scale_amount_max = 6.0
 color = Color(0.952941, 0.772549, 0.545098, 1)
 
-[connection signal="animation_looped" from="RigidBody2D/Torso" to="RigidBody2D" method="_on_torso_animation_looped"]
-[connection signal="body_entered" from="RigidBody2D/GroundedArea" to="RigidBody2D" method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="RigidBody2D/GroundedArea" to="RigidBody2D" method="_on_area_2d_body_exited"]
-[connection signal="body_exited" from="RigidBody2D/PickupArea" to="RigidBody2D" method="_on_pickup_area_body_exited"]
+[connection signal="animation_looped" from="PlayerRigidBody2D/Torso" to="PlayerRigidBody2D" method="_on_torso_animation_looped"]
+[connection signal="body_entered" from="PlayerRigidBody2D/GroundedArea" to="PlayerRigidBody2D" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="PlayerRigidBody2D/GroundedArea" to="PlayerRigidBody2D" method="_on_area_2d_body_exited"]
+[connection signal="body_exited" from="PlayerRigidBody2D/PickupArea" to="PlayerRigidBody2D" method="_on_pickup_area_body_exited"]

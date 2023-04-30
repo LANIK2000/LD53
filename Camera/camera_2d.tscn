@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://5uvq4v5dc5na"]
+[gd_scene load_steps=7 format=3 uid="uid://5uvq4v5dc5na"]
 
 [ext_resource type="Script" path="res://Camera/Camera2D.gd" id="1_edksd"]
 [ext_resource type="Texture2D" uid="uid://b1i43iimxftgo" path="res://textures/Background/Sky.png" id="2_lrm8l"]
 [ext_resource type="Texture2D" uid="uid://coboc8vyj73oo" path="res://textures/Background/Land.png" id="3_s32pi"]
+[ext_resource type="PackedScene" uid="uid://uorut87uks00" path="res://MonsterWall/MonsterWall.tscn" id="4_csshn"]
 
 [sub_resource type="SystemFont" id="SystemFont_wncsw"]
 
@@ -28,9 +29,15 @@ scale = Vector2(5.5101, 5.5101)
 texture = ExtResource("3_s32pi")
 
 [node name="Ammo" type="Label" parent="."]
+z_index = 100
+z_as_relative = false
 offset_left = -849.0
 offset_top = -460.0
 offset_right = -612.0
 offset_bottom = -371.0
 text = "AMMO: 20"
 label_settings = SubResource("LabelSettings_65sq4")
+
+[node name="MonsterWall" parent="." instance=ExtResource("4_csshn")]
+z_index = 10
+z_as_relative = false

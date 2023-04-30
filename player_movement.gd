@@ -96,7 +96,7 @@ func _physics_process(delta):
 	# Get the nearest box the player is touching
 	if not holding_box:
 		var min_distance = 9999;
-		for body in get_node("PickupArea").get_overlapping_bodies():
+		for body in $PickupArea.get_overlapping_bodies():
 			var distance = global_position.distance_to(body.global_position)
 			# Picking up guns has a priority
 			if body.has_node("GUN!!!"):
@@ -117,15 +117,17 @@ func _input(event):
 		if (gun and ammo > 0):
 			shooting = true;
 			ammo -= 1;
-			get_node("Torso").frame = 2;
-			get_node("Torso").play("shooting");
+			$Torso.frame = 2;
+			$Torso.play("shooting");
 			apply_central_impulse(Vector2.RIGHT * -direction * recoil);
 			
-			var target = get_node("RayCast2D").get_collider()
-			print(target)
+			var target = $RayCast2D.get_collider()
+			
 			if (target != null):
 				if (target.has_node("ThisIsABoxFuckYou") or target.get_name() == "TruckBody"):
 					target.apply_central_impulse(Vector2.RIGHT * direction * shoot_force)
+				if target.name == "Wall":
+					target.get_parent().hit_by_shotgun(5)
 				get_parent().get_node("GunParticle").global_position = get_node("RayCast2D").get_collision_point()
 				get_parent().get_node("GunParticle").emitting = true;
 
