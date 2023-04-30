@@ -14,11 +14,11 @@ physics_material_override = SubResource("PhysicsMaterial_wq16v")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-2.86102e-06, 9.53674e-07)
-scale = Vector2(9.6, 9.6)
+scale = Vector2(4, 4)
 texture = ExtResource("1_03r7s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_hv2r0")
 
 [node name="ThisIsABoxFuckYou" type="Node2D" parent="."]
