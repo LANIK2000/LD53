@@ -118,7 +118,6 @@ func _input(event):
 			get_node("Torso").frame = 2;
 			get_node("Torso").play("shooting");
 			apply_central_impulse(Vector2.RIGHT * -direction * recoil);
-<<<<<<< HEAD
 			
 			var target = get_node("RayCast2D").get_collider()
 			print(target)
@@ -127,11 +126,9 @@ func _input(event):
 					target.apply_central_impulse(Vector2.RIGHT * direction * shoot_force)
 				get_parent().get_node("GunParticle").global_position = get_node("RayCast2D").get_collision_point()
 				get_parent().get_node("GunParticle").emitting = true;
-				
-			
-=======
+
+
 			gun_sound_effect.play()
->>>>>>> a6ff7e59f4105044bba851b705f5f96e06eedc17
 	
 	if event.as_text() == "E" and just_pressed:
 		if (gun):
