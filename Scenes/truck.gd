@@ -31,7 +31,7 @@ func _physics_process(delta):
 	
 	if (things > 0):
 		gass_timer = 1
-		get_node("Wheel1").apply_torque_impulse(acceleration * delta * 100);
-		get_node("Wheel2").apply_torque_impulse(acceleration * delta * 100);
-		get_node("Wheel3").apply_torque_impulse(acceleration * delta * 100);
+		$Wheel1.apply_torque_impulse(acceleration * delta * 100);
+		$Wheel2.apply_torque_impulse(acceleration * delta * 100);
+		$Wheel3.apply_torque_impulse(acceleration * delta * 100);
 	
