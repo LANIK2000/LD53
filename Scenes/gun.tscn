@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cof7w4d4ksii4"]
+
+[ext_resource type="Texture2D" uid="uid://csjlvoyjai4hs" path="res://textures/Trucker/Gun.png" id="1_h2s75"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dmpug"]
+size = Vector2(64, 16)
+
+[node name="Gun" type="RigidBody2D"]
+mass = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_h2s75")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dmpug")
+
+[node name="GUN!!!" type="Node2D" parent="."]

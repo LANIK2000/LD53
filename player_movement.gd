@@ -1,9 +1,11 @@
 extends RigidBody2D
 
-var gun = false;
+var gun = true;
 
 var speed = 15;
 var jump_amount = 750;
+var pull_force = 5;
+var recoil = 200;
 
 var grounded = false;
 var area_collision_count = 0;
@@ -12,12 +14,17 @@ var direction = 1;
 var air_resistence = 0.01;
 
 var torso_idle = preload("res://textures/Trucker/Torse_Idle.png");
-var torso_gun = preload("res://textures/Trucker/Torse_Gun.png")
-var torso_shoot = preload("res://textures/Trucker/Torse_Shoot.png")
+var torso_gun = preload("res://textures/Trucker/Torse_Gun.png");
+var torso_shoot = preload("res://textures/Trucker/Torse_Shoot.png");
+
+var GUN = load("res://Scenes/gun.tscn");
 
 var nearest_box = null;
 var holding_box = false;
 var previous_mass = 0;
+
+var nearest_gun = null;
+var shooting = false;
 
 var highlight_color = Color(1.5,1.5,1.5);
 var normal_color = Color(1,1,1);
@@ -62,14 +69,16 @@ func _physics_process(delta):
 	
 	# Gun
 	if gun:
-		get_node("Torso").set_texture(torso_gun);
+		if not shooting:
+			get_node("Torso").frame = 1;
 	else:
-		get_node("Torso").set_texture(torso_idle);
+		get_node("Torso").frame = 0;
 	
 	# Holding box
 	if (holding_box):
 		if (nearest_box != null):
-			nearest_box.apply_central_impulse((global_position - nearest_box.global_position) * 0.1);
+			var direction_to_player = (global_position - nearest_box.global_position);
+			nearest_box.apply_central_impulse(direction_to_player * delta * pull_force);
 			nearest_box.gravity_scale = 0;
 			nearest_box.mass = 0;
 			nearest_box.modulate = highlight_color;
@@ -84,9 +93,15 @@ func _physics_process(delta):
 		var min_distance = 9999;
 		for body in get_node("PickupArea").get_overlapping_bodies():
 			var distance = global_position.distance_to(body.global_position)
-			if body.has_node("ThisIsABoxFuckYou") and distance < min_distance:
+			# Picking up guns has a priority
+			if body.has_node("GUN!!!"):
+				nearest_gun = body;
+			elif body.has_node("ThisIsABoxFuckYou") and distance < min_distance:
 				min_distance = distance
 				nearest_box = body;
+				nearest_gun = null;
+			else:
+				nearest_gun = null;
 	
 	
 
@@ -96,8 +111,28 @@ func _input(event):
 	if Input.is_key_pressed(KEY_UP) and just_pressed and grounded and linear_velocity.y > -100:
 		apply_central_impulse(Vector2.UP * jump_amount)
 	
-	if Input.is_key_pressed(KEY_E) and just_pressed and not gun and nearest_box != null:
-		holding_box = !holding_box;
+	if Input.is_key_pressed(KEY_SPACE) and just_pressed:
+		if (gun):
+			shooting = true;
+			get_node("Torso").frame = 2;
+			get_node("Torso").play("shooting");
+			apply_central_impulse(Vector2.RIGHT * -direction * recoil);
+			
+	
+	if Input.is_key_pressed(KEY_E) and just_pressed:
+		if (gun):
+			gun = false;
+			var dropped_gun = GUN.instantiate();
+			get_parent().get_parent().add_child(dropped_gun);
+			dropped_gun.global_position = global_position + (Vector2.RIGHT * direction * 50);
+			nearest_gun = null;
+		
+		elif (not gun and nearest_gun != null):
+			gun = true;
+			nearest_gun.queue_free();
+		
+		elif (not gun and nearest_box != null):
+			holding_box = !holding_box;
 
 # Check how many RigidBody or StaticBody objects the ray is intersecting (to check if grounded)
 func _on_area_2d_body_entered(body):
@@ -117,3 +152,11 @@ func _on_pickup_area_body_exited(body):
 		if (nearest_box == body):
 			nearest_box = null;
 			holding_box = false;
+	if body.has_node("GUN!!!"):
+		if (nearest_gun == body):
+			nearest_gun = null;
+
+func _on_torso_animation_looped():
+	shooting = false;
+	get_node("Torso").stop();
+	get_node("Torso").frame = 1;

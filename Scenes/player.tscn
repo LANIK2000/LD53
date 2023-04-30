@@ -1,13 +1,38 @@
-[gd_scene load_steps=11 format=3 uid="uid://3tfep6asnbkh"]
+[gd_scene load_steps=14 format=3 uid="uid://3tfep6asnbkh"]
 
 [ext_resource type="Script" path="res://player_movement.gd" id="1_nlax7"]
 [ext_resource type="Texture2D" uid="uid://rxludvpfr82o" path="res://textures/Trucker/Torse_Idle.png" id="1_r51fi"]
+[ext_resource type="Texture2D" uid="uid://dj02pk3a1i3os" path="res://textures/Trucker/Torse_Gun.png" id="2_pw5at"]
 [ext_resource type="Texture2D" uid="uid://60cfmt6m02e2" path="res://textures/Trucker/Legs_Idle.png" id="2_sh5wk"]
+[ext_resource type="Texture2D" uid="uid://5mk1v8alr41q" path="res://textures/Trucker/Torse_Shoot.png" id="3_c0knw"]
 [ext_resource type="Texture2D" uid="uid://dmw2f1evfepn3" path="res://textures/Trucker/Legs_Walk.png" id="4_jbnml"]
 [ext_resource type="PackedScene" uid="uid://5uvq4v5dc5na" path="res://Camera/camera_2d.tscn" id="5_d83pp"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1s7dw"]
 friction = 0.4
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3gqyj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_r51fi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pw5at")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_c0knw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_c0knw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_c0knw")
+}],
+"loop": true,
+"name": &"shooting",
+"speed": 5.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pgrsu"]
 resource_local_to_scene = true
@@ -32,7 +57,7 @@ height = 48.0
 radius = 7.125
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ufcvu"]
-radius = 70.9384
+radius = 78.0256
 
 [node name="Player" type="Node2D"]
 scale = Vector2(4, 4)
@@ -42,9 +67,11 @@ physics_material_override = SubResource("PhysicsMaterial_1s7dw")
 lock_rotation = true
 script = ExtResource("1_nlax7")
 
-[node name="Torso" type="Sprite2D" parent="RigidBody2D"]
+[node name="Torso" type="AnimatedSprite2D" parent="RigidBody2D"]
 scale = Vector2(4, 4)
-texture = ExtResource("1_r51fi")
+sprite_frames = SubResource("SpriteFrames_3gqyj")
+animation = &"shooting"
+speed_scale = 5.0
 
 [node name="Legs" type="AnimatedSprite2D" parent="RigidBody2D"]
 scale = Vector2(4, 4)
@@ -69,8 +96,10 @@ shape = SubResource("CircleShape2D_k0ynu")
 [node name="PickupArea" type="Area2D" parent="RigidBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/PickupArea"]
+position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_ufcvu")
 
+[connection signal="animation_looped" from="RigidBody2D/Torso" to="RigidBody2D" method="_on_torso_animation_looped"]
 [connection signal="body_entered" from="RigidBody2D/GroundedArea" to="RigidBody2D" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="RigidBody2D/GroundedArea" to="RigidBody2D" method="_on_area_2d_body_exited"]
 [connection signal="body_exited" from="RigidBody2D/PickupArea" to="RigidBody2D" method="_on_pickup_area_body_exited"]
