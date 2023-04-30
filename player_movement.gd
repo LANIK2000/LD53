@@ -38,7 +38,6 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	print(position)
 	# If we're standing over at least one RigidBody/StaticBody, we're grounded
 	# (other than the player)
 	if (area_collision_count > 1):
