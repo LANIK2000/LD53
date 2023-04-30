@@ -146,8 +146,12 @@ func _input(event):
 			nearest_gun.queue_free();
 		
 		elif (not gun and nearest_box != null):
+			if holding_box:
+				nearest_box.gravity_scale = 1;
+				nearest_box.mass = previous_mass;
+				nearest_box.modulate = normal_color;
+				nearest_box = null
 			holding_box = !holding_box;
-#			nearest_box = null
 
 # Check how many RigidBody or StaticBody objects the ray is intersecting (to check if grounded)
 func _on_area_2d_body_entered(body):
