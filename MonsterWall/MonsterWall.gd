@@ -4,10 +4,12 @@ extends Sprite2D
 
 var rand = RandomNumberGenerator.new();
 
+var camera: Camera2D = null
+var player: RigidBody2D = null
+
 var crawled_distance = 1
 var crawled_speed = 200
 var crawled_distance_max = 55200
-var camera: Camera2D = null
 var timer = 0.0
 var index = 0
 
@@ -31,6 +33,7 @@ func _process(delta):
 	
 	if camera == null:
 		camera = get_parent() as Camera2D
+		player = camera.get_parent() as RigidBody2D
 		camera.remove_child(self)
 		camera.get_parent().get_parent().add_child(self)
 		global_position = Vector2(4000, 0)
@@ -49,10 +52,8 @@ func _process(delta):
 		return
 	
 	for body in $Wall.get_overlapping_bodies():
-		if body.name == "PlayerRigidBody2D":
-			get_tree().reload_current_scene()
-		elif body is RigidBody2D:
-			body.apply_central_impulse(Vector2(0.01,-1) * 1000 * body.mass * delta);
+		if body is RigidBody2D:
+			body.apply_central_impulse(Vector2.UP * 10000 * body.mass * delta);
 			body.apply_torque_impulse(100000 * delta);
 	
 	if hit_timer > 0:
@@ -62,6 +63,10 @@ func _process(delta):
 		crawled_distance += crawled_speed * delta
 	if crawled_distance > crawled_distance_max:
 		crawled_distance = crawled_distance_max
+	
+	if player.global_position.x - global_position.x < crawled_distance:
+		get_tree().reload_current_scene()
+	
 	$Wall.position.x = crawled_distance
 	
 	timer += delta * 4
