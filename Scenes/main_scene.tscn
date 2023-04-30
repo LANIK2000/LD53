@@ -30,3 +30,11 @@ position = Vector2(256, 400)
 
 [node name="Box2" parent="." instance=ExtResource("4_8wvps")]
 position = Vector2(400, 88)
+
+[node name="Ground4" parent="." instance=ExtResource("1_fnv74")]
+position = Vector2(2216, 608)
+rotation = -0.433813
+
+[node name="Ground5" parent="." instance=ExtResource("1_fnv74")]
+position = Vector2(2808, 496)
+rotation = 0.0639286
