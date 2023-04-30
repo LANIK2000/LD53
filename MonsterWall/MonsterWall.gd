@@ -15,9 +15,12 @@ var stopped = true
 var start_timer = 1
 
 func _ready():
+	$IntroSong.play()
 	texture = null
 
 func start():
+	$IntroSong.stop()
+	$RideSong.play()
 	stopped = false
 	print("started")
 	start_timer = 1
