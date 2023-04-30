@@ -40,11 +40,7 @@ func _ready():
 func _physics_process(delta):
 	# If we're standing over at least one RigidBody/StaticBody, we're grounded
 	# (other than the player)
-	if (area_collision_count > 1):
-		if not (holding_box and area_collision_count == 2):
-			grounded = true;
-	else:
-		grounded = false;
+	grounded = area_collision_count > 1
 	
 	# Walking
 	if (Input.is_key_pressed(KEY_LEFT)):
