@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://3tfep6asnbkh"]
+[gd_scene load_steps=15 format=3 uid="uid://3tfep6asnbkh"]
 
 [ext_resource type="Script" path="res://player_movement.gd" id="1_nlax7"]
 [ext_resource type="Texture2D" uid="uid://rxludvpfr82o" path="res://textures/Trucker/Torse_Idle.png" id="1_r51fi"]
+[ext_resource type="AudioStream" uid="uid://qb64cqmnhiv3" path="res://Sounds/GunShot.wav" id="2_6fm25"]
 [ext_resource type="Texture2D" uid="uid://dj02pk3a1i3os" path="res://textures/Trucker/Torse_Gun.png" id="2_pw5at"]
 [ext_resource type="Texture2D" uid="uid://60cfmt6m02e2" path="res://textures/Trucker/Legs_Idle.png" id="2_sh5wk"]
 [ext_resource type="Texture2D" uid="uid://5mk1v8alr41q" path="res://textures/Trucker/Torse_Shoot.png" id="3_c0knw"]
@@ -62,10 +63,14 @@ radius = 78.0256
 [node name="Player" type="Node2D"]
 scale = Vector2(4, 4)
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
+[node name="RigidBody2D" type="RigidBody2D" parent="." node_paths=PackedStringArray("gun_sound_effect")]
 physics_material_override = SubResource("PhysicsMaterial_1s7dw")
 lock_rotation = true
 script = ExtResource("1_nlax7")
+gun_sound_effect = NodePath("gun_sound_effect")
+
+[node name="gun_sound_effect" type="AudioStreamPlayer2D" parent="RigidBody2D"]
+stream = ExtResource("2_6fm25")
 
 [node name="Torso" type="AnimatedSprite2D" parent="RigidBody2D"]
 scale = Vector2(4, 4)
