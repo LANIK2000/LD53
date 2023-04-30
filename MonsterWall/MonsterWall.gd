@@ -36,7 +36,7 @@ func _process(delta):
 		player = camera.get_parent() as RigidBody2D
 		camera.remove_child(self)
 		camera.get_parent().get_parent().add_child(self)
-		global_position = Vector2(4000, 0)
+		global_position = Vector2(6000, 0)
 		$Wall.monitoring = true
 		return
 	
@@ -53,8 +53,8 @@ func _process(delta):
 	
 	for body in $Wall.get_overlapping_bodies():
 		if body is RigidBody2D:
-			body.apply_central_impulse(Vector2.UP * 10000 * body.mass * delta);
-			body.apply_torque_impulse(100000 * delta);
+#			body.apply_central_impulse(Vector2.UP * 1000 * delta);
+			body.apply_torque_impulse(300000 * body.mass * delta);
 	
 	if hit_timer > 0:
 		hit_timer -= delta

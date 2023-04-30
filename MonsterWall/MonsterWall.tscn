@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://c5kog6l27cdao" path="res://Sounds/sexy_trucking_final.wav" id="6_tlokt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7owoe"]
-size = Vector2(34.8438, 5630)
+size = Vector2(2008.58, 5651)
 
 [node name="MonsterWall" type="Sprite2D"]
 texture = ExtResource("1_w45bc")
@@ -19,6 +19,7 @@ textures = Array[Texture]([ExtResource("1_w45bc"), ExtResource("3_ovbd4"), ExtRe
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(-1021.71, 10.5)
 shape = SubResource("RectangleShape2D_7owoe")
 
 [node name="IntroSong" type="AudioStreamPlayer" parent="."]
