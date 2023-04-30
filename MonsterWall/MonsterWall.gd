@@ -3,7 +3,8 @@ extends Sprite2D
 @export var textures: Array[Texture]
 
 var crawled_distance = 1
-var crawled_speed = 100
+var crawled_speed = 200
+var crawled_distance_max = 55200
 var camera: Camera2D = null
 var timer = 0.0
 var index = 0
@@ -27,7 +28,7 @@ func _process(delta):
 		camera = get_parent() as Camera2D
 		camera.remove_child(self)
 		camera.get_parent().get_parent().add_child(self)
-		global_position = Vector2(2000, 0)
+		global_position = Vector2(4000, 0)
 		$Wall.monitoring = true
 		return
 	
@@ -48,9 +49,11 @@ func _process(delta):
 	
 	if hit_timer > 0:
 		hit_timer -= delta
-		crawled_distance -= crawled_speed * delta / 2
+		crawled_distance -= crawled_speed * delta * 4
 	else:
 		crawled_distance += crawled_speed * delta
+	if crawled_distance > crawled_distance_max:
+		crawled_distance = crawled_distance_max
 	$Wall.position.x = crawled_distance
 	
 	timer += delta * 4
@@ -89,8 +92,8 @@ func _draw():
 		i += step
 	
 
-func hit_by_shotgun(power: float):
-	hit_timer = power
+func hit_by_shotgun():
+	hit_timer = 10
 
 
 

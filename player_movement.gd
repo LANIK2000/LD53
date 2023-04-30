@@ -38,7 +38,7 @@ func _ready():
 	pass
 
 func _physics_process(delta):
-	
+	print(position)
 	# If we're standing over at least one RigidBody/StaticBody, we're grounded
 	# (other than the player)
 	if (area_collision_count > 1):
@@ -127,7 +127,7 @@ func _input(event):
 				if (target.has_node("ThisIsABoxFuckYou") or target.get_name() == "TruckBody"):
 					target.apply_central_impulse(Vector2.RIGHT * direction * shoot_force)
 				if target.name == "Wall":
-					target.get_parent().hit_by_shotgun(5)
+					target.get_parent().hit_by_shotgun()
 				get_parent().get_node("GunParticle").global_position = get_node("RayCast2D").get_collision_point()
 				get_parent().get_node("GunParticle").emitting = true;
 
