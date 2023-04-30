@@ -104,9 +104,6 @@ func _physics_process(delta):
 				min_distance = distance
 				nearest_box = body;
 				nearest_gun = null;
-			else:
-				nearest_gun = null;
-	
 	
 
 func _input(event):
