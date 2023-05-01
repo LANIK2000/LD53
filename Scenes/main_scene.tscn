@@ -1,4 +1,4 @@
-[gd_scene load_steps=176 format=3 uid="uid://do36f4d1q8e0m"]
+[gd_scene load_steps=175 format=3 uid="uid://do36f4d1q8e0m"]
 
 [ext_resource type="Script" path="res://Scenes/main_scene.gd" id="1_ljvy0"]
 [ext_resource type="PackedScene" uid="uid://bc3owkdgcenqd" path="res://Scenes/truck.tscn" id="2_lnld7"]
@@ -1134,9 +1134,6 @@ font_color = Color(1, 0.8, 0.0666667, 1)
 outline_size = 19
 outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xsmej"]
-load_path = "res://.godot/imported/colorpickl.png-5490ae1db3edcee525f8f6734b90d627.ctex"
-
 [node name="Main Scene" type="Node2D"]
 script = ExtResource("1_ljvy0")
 
@@ -1282,7 +1279,3 @@ offset_bottom = 167.0
 text = "53
 "
 label_settings = SubResource("LabelSettings_u6s2m")
-
-[node name="Colorpickl" type="Sprite2D" parent="."]
-position = Vector2(56058, 1001)
-texture = SubResource("CompressedTexture2D_xsmej")
