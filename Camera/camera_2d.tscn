@@ -7,9 +7,10 @@
 
 [sub_resource type="SystemFont" id="SystemFont_wncsw"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_65sq4"]
+[sub_resource type="LabelSettings" id="LabelSettings_7iude"]
 font = SubResource("SystemFont_wncsw")
 font_size = 48
+font_color = Color(0, 0.603922, 1, 1)
 outline_size = 19
 outline_color = Color(0, 0, 0, 1)
 
@@ -29,14 +30,14 @@ scale = Vector2(5.5101, 5.5101)
 texture = ExtResource("3_s32pi")
 
 [node name="Ammo" type="Label" parent="."]
-z_index = 100
+z_index = 101
 z_as_relative = false
 offset_left = -849.0
 offset_top = -460.0
 offset_right = -612.0
 offset_bottom = -371.0
 text = "AMMO: 20"
-label_settings = SubResource("LabelSettings_65sq4")
+label_settings = SubResource("LabelSettings_7iude")
 
 [node name="MonsterWall" parent="." instance=ExtResource("4_csshn")]
 z_index = 10

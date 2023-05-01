@@ -18,3 +18,13 @@ func _process(delta):
 		if body.has_node("ThisIsABoxFuckYou"):
 			delivered_boxes += 1;
 	$Score.text = "Boxes delivered: " + str(delivered_boxes) + "/" + str(total_boxes)
+	
+
+func _input(event):
+	# Jumping
+	var just_pressed = event.is_pressed() and not event.is_echo()
+	if event.as_text() == "Escape" and just_pressed:
+		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)

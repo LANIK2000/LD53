@@ -10,14 +10,18 @@ config_version=5
 
 [application]
 
-config/name="Ld 53"
+config/name="boxtruckocalypse (LUDUM DARE 53)"
+config/description="two trucks having sex"
 run/main_scene="res://Scenes/main_scene.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
+config/icon="res://textures/Monster_Wall/Wiggle_1.png"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
+window/stretch/mode="viewport"
 
 [editor_plugins]
 
