@@ -13,6 +13,7 @@ var direction = 1;
 func _ready():
 	audio_player.pitch_scale = .5
 	audio_player.volume_db = -10
+	$TruckBody/AudioStreamPlayer2D2.play()
 
 func _process(delta):
 	if direction == 1:
@@ -31,20 +32,19 @@ func _physics_process(delta):
 	
 	# Count overlapping rigidbodies
 	things = 0;
-	for body in get_node("TruckBody/GasPedal").get_overlapping_bodies():
+	for body in $TruckBody/GasPedal.get_overlapping_bodies():
 		things += 1;
 	
+	$TruckBody/AudioStreamPlayer2D2.stream_paused = true
 	if (things > 0):
 		gass_timer = 1
 		$Wheel1.apply_torque_impulse(direction * acceleration * delta * 100);
 		$Wheel2.apply_torque_impulse(direction * acceleration * delta * 100);
 		$Wheel3.apply_torque_impulse(direction * acceleration * delta * 100);
+		if direction == -1:
+			$TruckBody/AudioStreamPlayer2D2.stream_paused = false
 	
 
 # Change direction
-func _on_direction_button_body_exited(body):
-	direction = -direction;
-
-
 func _on_direction_button_body_entered(body):
 	direction = -direction;
