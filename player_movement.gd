@@ -80,12 +80,12 @@ func _physics_process(delta):
 			var direction_to_player = (global_position - nearest_box.global_position);
 			nearest_box.apply_central_impulse(direction_to_player * delta * pull_force);
 			nearest_box.gravity_scale = 0;
-			nearest_box.mass = 0;
+#			nearest_box.mass = 0;
 			nearest_box.modulate = highlight_color;
 	else:
 		if (nearest_box != null):
 			nearest_box.gravity_scale = 1;
-			nearest_box.mass = previous_mass;
+#			nearest_box.mass = previous_mass;
 			nearest_box.modulate = normal_color;
 	
 	# Get the nearest box the player is touching
@@ -144,7 +144,7 @@ func _input(event):
 		elif (not gun and nearest_box != null):
 			if holding_box:
 				nearest_box.gravity_scale = 1;
-				nearest_box.mass = previous_mass;
+#				nearest_box.mass = previous_mass;
 				nearest_box.modulate = normal_color;
 				nearest_box = null
 			holding_box = !holding_box;
@@ -162,7 +162,7 @@ func _on_area_2d_body_exited(body):
 func _on_pickup_area_body_exited(body):
 	if body.has_node("ThisIsABoxFuckYou"):
 		body.gravity_scale = 1;
-		body.mass = previous_mass;
+#		body.mass = previous_mass;
 		body.modulate = normal_color;
 #		if (nearest_box == body):
 #			nearest_box = null;
