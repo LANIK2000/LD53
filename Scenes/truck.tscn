@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bc3owkdgcenqd"]
+[gd_scene load_steps=17 format=3 uid="uid://bc3owkdgcenqd"]
 
 [ext_resource type="Texture2D" uid="uid://bwngy3jewmowg" path="res://textures/Truck/Frame.png" id="1_6p0ik"]
 [ext_resource type="Script" path="res://Scenes/truck.gd" id="1_rrpx4"]
 [ext_resource type="Texture2D" uid="uid://b1p8k1ggxomow" path="res://textures/Truck/Wheel.png" id="2_dvcf2"]
 [ext_resource type="AudioStream" uid="uid://b84i7ha5og570" path="res://Sounds/Truck.wav" id="2_pcoli"]
+[ext_resource type="Texture2D" uid="uid://pr6hcrw4tq41" path="res://textures/Truck/Button.png" id="3_kbqn2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mpfx5"]
 size = Vector2(64, 16)
@@ -31,6 +32,9 @@ size = Vector2(608, 40)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gqacm"]
 size = Vector2(56, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tva56"]
+size = Vector2(24, 11)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5kn2l"]
 radius = 56.0
@@ -91,6 +95,18 @@ position = Vector2(160, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TruckBody/GasPedal"]
 position = Vector2(252, -40)
 shape = SubResource("RectangleShape2D_gqacm")
+
+[node name="DirectionButton" type="Area2D" parent="TruckBody"]
+position = Vector2(101, -72)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TruckBody/DirectionButton"]
+position = Vector2(209, -104.5)
+shape = SubResource("RectangleShape2D_tva56")
+
+[node name="Button" type="Sprite2D" parent="TruckBody/DirectionButton"]
+position = Vector2(209, -106)
+scale = Vector2(4, 4)
+texture = ExtResource("3_kbqn2")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="TruckBody"]
 position = Vector2(160, 0)
@@ -153,3 +169,5 @@ position = Vector2(232, 48)
 node_a = NodePath("../TruckBody")
 node_b = NodePath("../Wheel3")
 softness = 2.0
+
+[connection signal="body_entered" from="TruckBody/DirectionButton" to="." method="_on_direction_button_body_entered"]
