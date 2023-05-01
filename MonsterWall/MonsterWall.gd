@@ -20,6 +20,9 @@ var start_timer = 1
 
 func _ready():
 	$IntroSong.play()
+	crawled_speed = $/root/DatabaseWannabe.get_data("crawled_speed")
+	if crawled_speed == null || crawled_speed == 0:
+		crawled_speed = 200
 	texture = null
 
 func start():
@@ -76,6 +79,17 @@ func _process(delta):
 		if index == textures.size():
 			index = 0
 	queue_redraw()
+
+func _input(event):
+	var crawled_speed_new = crawled_speed
+	if event.as_text() == "P":
+		crawled_speed_new = 600
+	elif event.as_text() == "O":
+		crawled_speed_new = 200
+	
+	if crawled_speed_new != crawled_speed:
+		$/root/DatabaseWannabe.set_data("crawled_speed", crawled_speed_new)
+		get_tree().reload_current_scene()
 
 func _draw():
 	if camera == null || start_timer > 0:

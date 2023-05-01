@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh71y7ibei68p"]
+
+[ext_resource type="Script" path="res://database_wannabe.gd" id="1_rc06r"]
+
+[node name="DatabaseWannabe" type="Node"]
+script = ExtResource("1_rc06r")
