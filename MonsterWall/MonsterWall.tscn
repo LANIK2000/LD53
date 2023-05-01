@@ -24,8 +24,8 @@ shape = SubResource("RectangleShape2D_7owoe")
 
 [node name="IntroSong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_yq6tl")
-volume_db = -30.0
+volume_db = -23.0
 
 [node name="RideSong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_tlokt")
-volume_db = -30.0
+volume_db = -23.0
