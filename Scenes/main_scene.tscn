@@ -1,5 +1,6 @@
-[gd_scene load_steps=169 format=3 uid="uid://do36f4d1q8e0m"]
+[gd_scene load_steps=176 format=3 uid="uid://do36f4d1q8e0m"]
 
+[ext_resource type="Script" path="res://Scenes/main_scene.gd" id="1_ljvy0"]
 [ext_resource type="PackedScene" uid="uid://bc3owkdgcenqd" path="res://Scenes/truck.tscn" id="2_lnld7"]
 [ext_resource type="PackedScene" uid="uid://3tfep6asnbkh" path="res://Scenes/player.tscn" id="3_11swo"]
 [ext_resource type="PackedScene" uid="uid://ckxm2vpyhjud6" path="res://Scenes/box.tscn" id="4_8wvps"]
@@ -14,6 +15,7 @@
 [ext_resource type="Script" path="res://addons/rmsmartshape/normal_range.gd" id="11_p5d3w"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="12_8b7d8"]
 [ext_resource type="Texture2D" uid="uid://fjbf0jfjklcm" path="res://textures/Ground/Bottom.png" id="13_i62xg"]
+[ext_resource type="LabelSettings" uid="uid://d0b7mpbl87otd" path="res://NormalLabel.tres" id="16_3vj6r"]
 
 [sub_resource type="Resource" id="Resource_snrdc"]
 script = ExtResource("6_ug5bu")
@@ -1099,15 +1101,44 @@ fill_texture_show_behind_parent = false
 fill_mesh_offset = 0.0
 render_offset = 0.0
 
-[sub_resource type="SystemFont" id="SystemFont_wncsw"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dj0b0"]
+size = Vector2(271.533, 133.433)
 
-[sub_resource type="LabelSettings" id="LabelSettings_hv86q"]
-font = SubResource("SystemFont_wncsw")
+[sub_resource type="SystemFont" id="SystemFont_ti3kj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_75ejr"]
+font = SubResource("SystemFont_ti3kj")
 font_size = 48
+font_color = Color(1, 1, 0, 1)
 outline_size = 19
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_0quuw"]
+font = SubResource("SystemFont_ti3kj")
+font_size = 48
+font_color = Color(0.933333, 0.333333, 0.2, 1)
+outline_size = 19
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_n3gxx"]
+font = SubResource("SystemFont_ti3kj")
+font_size = 48
+font_color = Color(0.968627, 0.568627, 0.133333, 1)
+outline_size = 19
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_u6s2m"]
+font = SubResource("SystemFont_ti3kj")
+font_size = 48
+font_color = Color(1, 0.8, 0.0666667, 1)
+outline_size = 19
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xsmej"]
+load_path = "res://.godot/imported/colorpickl.png-5490ae1db3edcee525f8f6734b90d627.ctex"
+
 [node name="Main Scene" type="Node2D"]
+script = ExtResource("1_ljvy0")
 
 [node name="Truck" parent="." instance=ExtResource("2_lnld7")]
 position = Vector2(1114, 708)
@@ -1159,7 +1190,7 @@ offset_top = 445.0
 offset_right = 701.0
 offset_bottom = 585.0
 text = "Deliver as many boxes as possible!"
-label_settings = SubResource("LabelSettings_hv86q")
+label_settings = ExtResource("16_3vj6r")
 
 [node name="Ammo3" type="Label" parent="."]
 z_index = 100
@@ -1169,7 +1200,7 @@ offset_top = 568.0
 offset_right = 3050.0
 offset_bottom = 708.0
 text = "!!! Monster Incomming !!!"
-label_settings = SubResource("LabelSettings_hv86q")
+label_settings = ExtResource("16_3vj6r")
 
 [node name="Ammo2" type="Label" parent="."]
 z_index = 100
@@ -1181,4 +1212,77 @@ offset_bottom = 754.0
 text = "Arrow keys - move
 E - pickup and drop
 Space - shoot"
-label_settings = SubResource("LabelSettings_hv86q")
+label_settings = ExtResource("16_3vj6r")
+
+[node name="Congrations" type="Label" parent="."]
+z_index = 100
+z_as_relative = false
+offset_left = 55666.0
+offset_top = 168.0
+offset_right = 56936.0
+offset_bottom = 378.0
+text = "Congrants on making it here alive!
+The monster politely stopped moving, so u r safe now :)"
+label_settings = ExtResource("16_3vj6r")
+
+[node name="BoxCounter" type="Area2D" parent="."]
+position = Vector2(56535, -11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoxCounter"]
+position = Vector2(2854, -1333.5)
+scale = Vector2(30, 30)
+shape = SubResource("RectangleShape2D_dj0b0")
+
+[node name="Score" type="Label" parent="."]
+z_index = 100
+z_as_relative = false
+offset_left = 56096.0
+offset_top = 376.0
+offset_right = 57366.0
+offset_bottom = 586.0
+text = "Boxes delivered: 0/0"
+label_settings = SubResource("LabelSettings_75ejr")
+
+[node name="Credits" type="Label" parent="."]
+z_index = 100
+z_as_relative = false
+offset_left = 55925.0
+offset_top = 686.0
+offset_right = 57195.0
+offset_bottom = 896.0
+text = "Made by jandourek and LANIK2000
+for
+Thx 4 playing!!!!!!!"
+label_settings = ExtResource("16_3vj6r")
+
+[node name="Ludum" type="Label" parent="Credits"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 69.0
+offset_right = 335.0
+offset_bottom = 168.0
+text = "LUDUM"
+label_settings = SubResource("LabelSettings_0quuw")
+
+[node name="Dare" type="Label" parent="Credits"]
+layout_mode = 0
+offset_left = 273.0
+offset_top = 68.0
+offset_right = 408.0
+offset_bottom = 167.0
+text = "DARE"
+label_settings = SubResource("LabelSettings_n3gxx")
+
+[node name="53" type="Label" parent="Credits"]
+layout_mode = 0
+offset_left = 411.0
+offset_top = 68.0
+offset_right = 546.0
+offset_bottom = 167.0
+text = "53
+"
+label_settings = SubResource("LabelSettings_u6s2m")
+
+[node name="Colorpickl" type="Sprite2D" parent="."]
+position = Vector2(56058, 1001)
+texture = SubResource("CompressedTexture2D_xsmej")

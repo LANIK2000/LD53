@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://d0b7mpbl87otd"]
+
+[sub_resource type="SystemFont" id="SystemFont_ti3kj"]
+
+[resource]
+font = SubResource("SystemFont_ti3kj")
+font_size = 48
+outline_size = 19
+outline_color = Color(0, 0, 0, 1)
